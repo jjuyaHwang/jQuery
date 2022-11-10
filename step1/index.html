@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery 기초이론</title>
+    <link rel="stylesheet" href="css">
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <script src="js/index.js"></script>
+    <script>
+        $(document).ready(function(){
+            // addClass(class 추가), removeClass(class 제거) , hasClass (class 가지고있는 여부)
+            $('.test1').click(function(){
+                $('.test1').addClass('active');
+            });
+        });
+    </script>
+    <style>
+        div {width: 100px; height: 100px; border: 1px solid blue;}
+        .active {background-color: slateblue;}
+    </style>
+</head>
+<body>
+    <div class="test1">
+        test
+    </div>
+    <div class="test2">
+        test
+    </div>
+</body>
+</html>
