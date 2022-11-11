@@ -12,8 +12,15 @@
         $(document).ready(function(){
             // addClass(class 추가), removeClass(class 제거) , hasClass (class 가지고있는 여부)
             $('.test1').click(function(){
-                $('.test1').addClass('active');
+                if($('.test1').hasClass('active')){
+                    $('.test1').removeClass('active');
+                }else{
+                    $('.test1').addClass('active');
+                }
+                
             });
+
+            
         });
     </script>
     <style>
