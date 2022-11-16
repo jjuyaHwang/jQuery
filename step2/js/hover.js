@@ -38,7 +38,21 @@ $(document).ready(function(){
     // $('.outer').mouseover(function(){
     //     console.log('마우스 커서 이동');
     // });
-    $('.outer').mouseenter(function(){
-        console.log('마우스 커서 이동');
-    });
+    // $('.outer').mouseenter(function(){
+    //     console.log('마우스 커서 이동'); // 버블링 일어나지 않아서 많이 사용함.
+    // });
+
+    // $('.outer').mouseleave(function(){
+    //     console.log('마우스가 떠날 때');
+    // });
+
+    // $('.outer').mouseout(function(){
+    //     console.log('마우스가 떠날 때'); // 버블링 일어남
+    // });
+
+    $('.outer').hover(function(){
+            $('body').append('<h1>마우스 hover 들어갈 때 효과</h1>');
+    },function(){
+        $('body').append('<h1>마우스 hover 나갈 때 효과</h1>');
+        });
 });
