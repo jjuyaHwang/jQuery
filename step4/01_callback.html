@@ -7,6 +7,7 @@
     <title>callback 함수 다루기</title>
     <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js" integrity="sha256-lSjKY0/srUM9BE3dPm+c4fBo1dky2v27Gdjm2uoZaL0=" crossorigin="anonymous"></script>
     <style>
         .container{
             position: absolute;
@@ -25,6 +26,7 @@
             background-color: white;
             color: #1ecd97;
             border: 2px solid #1ecd97;
+            transition: all 0.25s ease;
         }
 
         button:hover{
@@ -47,6 +49,10 @@
 
         .onclic:hover{
             background-color: white;
+        }
+
+        .onclic::after{
+            content: "";
         }
 
         @keyframes rotating{
@@ -75,5 +81,38 @@
     <div class="container">
         <button></button>
     </div>
+
+    <script>
+        $(function(){
+            // button을 클릭하였을때 함수를 실행하라
+            $('button').click(function(){
+                //클릭된 button에 onclic 클래스를 추가해라
+                $(this).addClass('onclic', finclic);
+            });
+
+            function finclic(){
+                // setTimeout(실행할 함수, 시간) 한번 실행시키기 (2.25초동안 한번 실행시키기)
+                setTimeout(function(){
+                    //button에 추가된 onclic 클래스를 제거한후
+                    $('button').removeClass('onclic');
+                    // finclic 클래스를 추가해라
+                    $('button').addClass('finclic', callback);
+                }, 2250);
+
+            function callback(){
+                setTimeout(function(){
+                    $('button').removeClass('finclic');
+                }, 2250);
+            }
+
+                
+
+                
+            }
+            
+
+
+        });
+    </script>
 </body>
 </html>
