@@ -9,13 +9,20 @@
     <script>
         $(document).ready(function(){
             $(window).scroll(function(){
-                console.log($(window).scrollTop());
-                $('section').offset().top
-                console.log('offsetTop = ' + $('section').offset().top);
+                var scrolltop = $(window).scrollTop();
+                var sectionoffsettop = $('section').offset().top;
+                var windowHeight = $(window).height();
+        
 
-                if($(window).scrollTop() > $('section').offset().top){
-                    $('section span').addClass('active');
-                }
+                console.log(scrolltop > sectionoffsettop - windowHeight);
+                //console.log($('section').offset().top);
+                //console.log('offsetTop-scrollTop = ' + $('section').offset().top - ($(window).scrollTop()));
+                //$('section').offset().top
+                //console.log('offsetTop = ' + $('section').offset().top);
+
+                //if($(window).scrollTop() > $('section').offset().top){
+                //    $('section span').addClass('active');
+                //}
             });
         });
     </script>
