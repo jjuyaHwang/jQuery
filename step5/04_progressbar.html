@@ -9,9 +9,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet" />
     <script>
         $(document).ready(function(){
+            var scrollprogress = 0;
+            var rotateValue = 0;
             $(window).scroll(function(){
-                var scrollprogress = 0;
                 scrollprogress = $(window).scrollTop() / ($(document).height() - $(window).height());
+                $('.progressBar span').css('width', scrollprogress * 100 + '%');
                 //case1. 
                 //if -> scrollTop 이 section offsetTop 보다 클경우에 대한 문법을 작성해보시오.
                 //참일경우 .upBtn display block 아닐경우 .upBtn display none
@@ -24,7 +26,34 @@
                 //case2.
                 console.log('document height' + $(document).height());
                 console.log('window height' + $(window).height());
-                console.log(scrollprogress);
+                console.log(scrollprogress); //0.2416547987452
+                // 변수 opacityValue 값에 scrollprogress값에 0~1 수치로 만든뒤
+                //if 문 사용하여 opacityValue 값이 0 보다 크거나 같을경우 
+                //.upBtn 이 display : block 형태로 만들기 아닐경우는 반대로 none 의 효과로 만들기
+                // var opacityValue = scrollprogress * 1
+                // // console.log('opacityValue = ' + opacityValue);
+                // if(opacityValue >= 0){
+                //     $('.upBtn').css({
+                //         'opacity' : opacityValue,
+                //         'display' : 'block'
+                //     });
+                // }else{
+                //     $('.upBtn').css({
+                //         'opacity' : 0,
+                //         'display' : 'none'
+                //     });
+                // }
+
+                rotateValue = scrollprogress * 720;
+                $('.upBtn .upBG').css('transform' , 'translate(-50%,-50%) rotate(' + rotateValue + 'deg)');
+            });
+
+            $('.progressBar').click(function(e){
+                    scrollprogress = e.clientX / $(this).width();
+                    $(window).scrollTop(
+                        ($(document).height() - $(window).height()) * scrollprogress
+                    )
+                    
             });
         });
     </script>
@@ -45,7 +74,7 @@
         .upBtn .material-icons-outlined { z-index: 10;}
         .upBtn .upBG{
             background-color: blueviolet; position: absolute; left: 50%; top: 50%; width: 150%;
-            padding-bottom: 150%; z-index: -1; transform: translate(-50%,-50%); border-radius: 50%;
+            padding-bottom: 150%; z-index: -1; transform: translate(-50%,-50%); border-radius: 15px;
         }
     </style>
 
