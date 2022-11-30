@@ -9,10 +9,10 @@
     <script>
         $(document).ready(function(){
             $('header').mousemove(function(e){
-                var mouseX = (1 - (e.offsetX / $('header').width()) * 2);//header의 width 값에 곱하기 2
-                var mouseY = (1 - (e.offsetY / $('header').height()) * 2);//header의 width 값에 곱하기 2
+                var mouseX = (e.offsetX / $('header').width());//header의 width 값에 곱하기 2
+                var mouseY = (e.offsetY / $('header').height());//header의 width 값에 곱하기 2
                 //console.log(1 - (e.offsetX / $('header').width()) * 2);
-
+                console.log(mouseX);
                 $('header div.mainBG img').each(function(){
                     $(this).css({
                         'transform' : 'translateX(' + mouseX * $(this).attr('data-movePX') + 'px) translateY(' +
@@ -20,7 +20,7 @@
                     });
                 });
             });
-            mainBG(70);
+            mainBG(2);
 
             function mainBG(count){
                 var headerBG = $('header div.mainBG');
