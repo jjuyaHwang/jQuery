@@ -17,7 +17,7 @@
             //ol li 가 eq값을 받아 active Class 를 추가
             $('ol li').eq(0).addClass('active');
 
-            //mousewheel DOMMouseScroll  on
+            //mousewheel(사파리,크롬,오페라까지 지원) DOMMouseScroll(파이어폭스 지원)  on(두매개체를 같이 사용하기위함)
             $('[data-event="fullpage"]').on('mousewheel DOMMouseScroll',function(e){
                 var delta = e.originalEvent.wheelDelta; // 마우스 스크롤 방향 감지 이벤트
                 if(delta > 0){
@@ -25,10 +25,29 @@
                     // console.log($(this).prev().offset());
                     if(!($(this).prev().offset() == undefined)){  //$(this).prev().offset()  undefined 값이 아닐 경우
                         $('html').stop().animate({scrollTop : $(this).prev().offset().top},1000);
+                        // ol li active 제거
+                        $('ol li').removeClass('active');
+                        // ol li 가지고 있는 eq 값을 사용하여 이전요소에 index값인 곳에 active 클래스를 추가
+                        $('ol li').eq($(this).prev().index()).addClass('active');
                     }
                 }else{
                     //마우스 휠을 아래로
+                    if(!($(this).next().offset() == undefined)){
+                        $('html').stop().animate({scrollTop : $(this).next().offset().top},1000);
+                        $('ol li').removeClass('active');
+                        $('ol li').eq($(this).next().index()).addClass('active');
+                    }
                 }
+            });
+
+            $('ol li').click(function(){
+                //removeClass active
+                $('ol li').removeClass('active');
+                //class 를 active 추가
+                $(this).addClass('active');
+                // $('ol li').eq($(this).next().index()).addClass('active');
+                $('html').stop().animate({scrollTop : $('[data-event="fullpage"]').eq($(this).index()).offset().top},1000);
+
             });
         });
     </script>
@@ -44,7 +63,7 @@
         header{background-color: teal;}
         section:nth-of-type(2) {background-color: cadetblue;}
         footer{background-color: blueviolet;}
-        /* body{overflow: hidden;} */
+        body{overflow: hidden;}
         ol{margin: 0; padding: 0; list-style: none; position: fixed; right: 10px; top: 50%;}
         ol li{text-indent: -9999px; width: 10px; height: 10px; background-color: rgba(0,0,0,0.5); border-radius: 100%;}
         ol li:not(:last-child) { margin-bottom: 10px;}
