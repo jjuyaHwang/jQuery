@@ -27,6 +27,11 @@
                 $.cookie('test', 'value' , {expires : 7});
                 console.log($.cookie('test'));
            });
+
+           $('a').click(function(){
+            $.cookie('backgroundValue' , $(this).attr('data-BGColor'));
+            $.cookie('arrayNumb' , $(this).attr('data-cookieNumb'));
+           });
         });
     </script>
     <style>
@@ -36,7 +41,7 @@
 <body>
     <button class="cookie_create">쿠키생성</button>
     <div></div>
-    <a href="" data-BGColor="red" data-cookieNumb="0">red 보내기</a>
-    <a href="" data-BGColor="blue" data-cookieNumb="1">blue 보내기</a>
+    <a href="01_cookie_receive.html" data-BGColor="red" data-cookieNumb="0">red 보내기</a>
+    <a href="01_cookie_receive.html" data-BGColor="blue" data-cookieNumb="1">blue 보내기</a>
 </body>
 </html>
