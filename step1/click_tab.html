@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>click event</title>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function(){
+            $('ul li').click(function(){
+                $('ul li').removeClass('active');
+                $(this).addClass('active');
+
+                // ol li active class 를 모두 제거 해주세요.
+                $('ol li').removeClass('active');
+                $('ol li').eq($(this).index()).addClass('active');
+                
+                
+                // if($('ul li').hasClass('active')){
+                //     $('ul li').removeClass('active');
+                // }else{
+                //     $(this).addClass('active');
+                // }
+            });
+
+            /*
+                $('선택자').click() 선택자 클릭 이벤트
+
+                $('선택자').addClass('클래스명')
+                선택자에게 Class('클래스명')추가
+
+                $('선택자').removeClass('클래스명')
+                선택자에게 Class('클래스명')제거
+
+                $('선택자').hasClass('클래스명')
+                선택자가 class('클래스명')을 가지고 있으면 ture,
+                선택자가 class('클래스명')을 가지고있지 않으면 false
+
+                $('선택자').toggleClass('클래스명')
+                선택자가 class('클래스명')을 가지고 있으면 class('클래스')제거시켜주고,
+                선택자가 class('클래스명')을 가지고있지 않으면 class('클래스')추가시켜준다.
+
+                $('선택자').eq('순서')
+                선택자가 여러개인 상태에서 해당 인덱스('숫자')번쨰 선택자를 선택
+            */
+
+            //.menuBtn 을 클릭하면 
+            // .menuBtn 에 active 클래스를 투여하고 투여되어있으면 제거해라.
+            $('.menuBtn').click(function(){
+                $('.menuBtn').toggleClass('active');
+            });
+        });
+    </script>
+    <style>
+        * {margin: 0; padding: 0;}
+        .menuBtn {
+            position: fixed;
+            right: 50px;
+            top: 50px;
+            width: 50px;
+
+        }
+
+        .menuBtn span{
+            display: block;
+            height: 5px;
+            background-color: #333;
+            margin-bottom: 10px;
+            transition-duration: 0.5s;
+            transition-property: transform, background-color;
+        }
+
+        .menuBtn.active span:nth-child(1){
+            transform: translateY(15px) rotate(45deg);
+        }
+        .menuBtn.active span:nth-child(2){
+            background-color: transparent;
+        }
+        .menuBtn.active span:nth-child(3){
+            transform: translateY(-15px) rotate(-45deg);
+        }
+
+
+
+        ul, ol{list-style: none;}
+        ul {display: flex;}
+        ul li{
+            font-size: 50px;
+            flex: 1;
+            text-align: center;
+            border: 1px solid #333;
+            cursor: pointer;
+        }
+
+        ol li{
+            display: none;
+            justify-content: center;
+            align-items: center;
+            font-size: 50px;
+            height: 500px;
+        }
+        ul li.active {
+            background-color: rosybrown;
+        }
+
+        ol li.active{
+            display: flex;
+
+        }
+
+        ol li:first-child {background-color: aquamarine;}
+        ol li:nth-child(2) {background-color: lightgreen;}
+        ol li:last-child {background-color: lightpink;}
+
+        nav{
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        nav ul{
+            display: flex;
+            flex-direction: column;
+            background-color: white;
+
+        }
+
+        nav ul li a{
+            display: block;
+            padding: 30px 0;
+            color: black;
+            text-decoration: none;
+            text-transform: uppercase;
+            
+        }
+    </style>
+</head>
+<body>
+    <div class="menuBtn">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <nav>
+        <ul>
+            <li><a href=""> menu1</a></li>
+            <li><a href=""> menu2</a></li>
+            <li><a href=""> menu3</a></li>
+            <li><a href=""> menu4</a></li>
+            <li><a href=""> menu5</a></li>
+        </ul>
+    </nav>
+
+
+    <ul>
+        <li>menu1</li> 
+        <li>menu2</li> 
+        <li>menu3</li>
+    </ul>
+    <ol>
+        <li>content1</li>
+        <li>content2</li>
+        <li>content3</li>
+    </ol>
+</body>
+</html>
