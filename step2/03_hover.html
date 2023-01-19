@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hover 기초</title>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    <script>
+        /*
+            click - 클릭
+            dblclick - 더블클릭
+            mousedown - 마우스버튼을 누르고 있는 중
+            mouseup - 마우스버튼을 뗄 때
+            mousemove - 마우스커서 이동
+            mouseenter - 마우스가 영역으로 들어 갈때
+            mouseover - 마우스가 영역으로 들어갈때 (버블링 일어남)
+            mouseleave - 마우스가 영역 밖으로 나갈때
+            mouseout- 마우스가 영역 밖으로 나갈때 (버블링 일어남)
+        */
+       $(document).ready(function(){
+        $('.outer').dblclick(function(){
+            alert('더블클릭되었습니다.');
+        });
+        // $('.outer').mousedown(function(){
+        //     alert('마우스 버튼 누르고 있는중');
+        // });
+        $('.outer').mouseup(function(){
+            alert('마우스 버튼 뗄 때');
+        });
+        // $('.outer').mousemove(function(){
+        //     console.log('마우스 커서 이동')
+        // });
+        // $('.outer').mouseover(function(){ // 버블링이 일어나 다른 공간까지 침범
+        //     console.log('마우스 커서 이동')
+        // });
+        // $('.outer').mouseenter(function(){ // 버블링이 일어나지않아 많이 사용됨.
+        //     console.log('마우스 커서 이동')
+        // });
+        // $('.outer').mouseleave(function(){  // 버블링이 일어나지않는다.
+        //     console.log('마우스가 떠날 때')
+        // });
+        $('.outer').mouseout(function(){   // 버블링일어남.
+            console.log('마우스가 떠날 때')
+        });
+       })
+    </script>
+    <style>
+        .outer {width: 200px; height: 200px; background-color: darkorchid; padding: 50px;}
+        .inner {width: 100px; height: 100px; background-color: pink;}
+    </style>
+</head>
+<body>
+    <div class="outer">
+        <div class="inner"></div>
+    </div>
+</body>
+</html>
