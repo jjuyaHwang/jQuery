@@ -19,15 +19,15 @@
             mouseout- 마우스가 영역 밖으로 나갈때 (버블링 일어남)
         */
        $(document).ready(function(){
-        $('.outer').dblclick(function(){
-            alert('더블클릭되었습니다.');
-        });
+        // $('.outer').dblclick(function(){
+        //     alert('더블클릭되었습니다.');
+        // });
         // $('.outer').mousedown(function(){
         //     alert('마우스 버튼 누르고 있는중');
         // });
-        $('.outer').mouseup(function(){
-            alert('마우스 버튼 뗄 때');
-        });
+        // $('.outer').mouseup(function(){
+        //     alert('마우스 버튼 뗄 때');
+        // });
         // $('.outer').mousemove(function(){
         //     console.log('마우스 커서 이동')
         // });
@@ -40,10 +40,16 @@
         // $('.outer').mouseleave(function(){  // 버블링이 일어나지않는다.
         //     console.log('마우스가 떠날 때')
         // });
-        $('.outer').mouseout(function(){   // 버블링일어남.
-            console.log('마우스가 떠날 때')
+        // $('.outer').mouseout(function(){   // 버블링일어남.
+        //     console.log('마우스가 떠날 때')
+        // });
+
+        $('.outer').hover(function(){
+            $('body').append('<h1>마우스 hover 들어갈때 효과</h1>');
+        },function(){
+            $('body').append('<h1>마우스 hover 나갈때 효과</h1>');
         });
-       })
+       });
     </script>
     <style>
         .outer {width: 200px; height: 200px; background-color: darkorchid; padding: 50px;}
