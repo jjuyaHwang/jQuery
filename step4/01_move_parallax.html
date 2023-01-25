@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>move parallax</title>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function(){
+            $('header').mousemove(function(e){
+                var mouseX = (e.offsetX / $('header').width());
+                var mouseY = (e.offsetY / $('header').height());
+                console.log(mouseX);
+                // console.log(mouseY);
+                $('header div.mainBg img').each(function(){
+                    $(this).css({
+                        'transform' : 'translateX(' + mouseX * $(this).attr('data-movePX') + 'px) translateY(' +
+                        mouseY * $(this).attr('data-movePX') + 'px)'
+                    });
+                });
+            });
+
+            mainBG(40);
+
+            function mainBG(count){
+                var headerBG = $('header div.mainBg');
+                var headerWidth = $('header div.mainBg').width();
+                var headerHeight = $('header div.mainBg').height();
+
+                // console.log(movePX);
+
+                for(var i = 0; i < count; i++){
+                    var starImg = document.createElement('img');
+                    var movePX = Math.random() * 25;
+                    var starWidth = (Math.random() + 1) * 25;
+                    var starLeft = Math.random() * headerWidth;
+                    var starTop = Math.random() * headerHeight;
+
+                    if(i % 2 == 0){
+                        $(starImg).attr({
+                            'src':'images/stars.png',
+                            'data-movePX' : movePX
+                        });
+                    }else{
+                        $(starImg).attr({
+                            'src':'images/moon.png',
+                            'data-movePX' : movePX
+                        });
+                    }
+
+                    $(starImg).css('width' , starWidth);
+                    $(starImg).css('left' , starLeft);
+                    $(starImg).css('top' , starTop);
+
+                    headerBG.append(starImg);
+
+                    //Math.random -> 수학적 계산으로 자동적으로 랜덤식으로 계산하여주는 메소드
+                    //0 =< Math.random * 50 < 50 
+                }
+
+            }
+
+            // var random_1 = Math.random() * 50; // floor -> 정수 변환
+            // document.write(random_1);
+
+        });
+    </script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        header,section,footer{
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 130px;
+        }
+
+        section {background-color: blanchedalmond;}
+        header {
+            position: relative;
+            background-color: black;
+            color: white;
+            overflow: hidden;
+        }
+
+        header .mainBg {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        header .mainBg img{
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        header
+        <div class="mainBg"></div>
+    </header>
+    <section>section</section>
+    <footer>footer</footer>
+</body>
+</html>
