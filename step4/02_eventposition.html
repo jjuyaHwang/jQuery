@@ -8,11 +8,63 @@
     <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
     <script>
         $(document).ready(function(){
+            var posX , posY;
+            $('div ul li').click(function(e){
+                posX = e.offsetX;
+                posY = e.offsetY;
 
+                var ripples = $('<span></span>');
+                $(this).append(ripples);
+                ripples.css({
+                    'left' : posX,
+                    'top' : posY
+                })
+            });
         });
     </script>
     <style>
-        
+        *{margin: 0; padding: 0;}
+
+        div {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        div > ul {
+            list-style: none;
+            width: 1200px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        div > ul li {
+            flex: 1;
+            min-width: 20%;
+            height: 100px;
+            border: 1px solid #333;
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        div > ul li span {
+            position: absolute;
+            background-color: aquamarine;
+            border-radius: 100%;
+            transform: translate(-50%, -50%);
+            animation-name: animate;
+            animation-duration: 1s;
+            animation-timing-function: linear;
+            pointer-events: none;
+        }
+
+        @keyframes animate {
+            0%{width: 0; height: 0; opacity: 0.5;}
+            100%{width: 200%; padding-top: 200%; opacity: 0;}
+        }
     </style>
 </head>
 <body>
