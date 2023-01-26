@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>scroll</title>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function(){
+
+        });
+    </script>
+    <style>
+        *{margin: 0;padding: 0;}
+        header,section,footer{
+            height: 100vh;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 130px;
+        }
+
+        header{background-color: blanchedalmond;}
+        footer{background-color: cadetblue;}
+        section{flex-direction: column;}
+        section >* {font-size: 100px;}
+    </style>
+</head>
+<body>
+    <header>header</header>
+    <section>
+        <h2 data-scroll="leftRight">section</h2>
+        <div data-scroll="rightLeft">section</div>
+        <p data-scroll="bottomTop">section</p>
+        <div data-scroll="rotate">section</div>
+        <h3>section</h3>
+        <div data-scroll="leftRight">section</div>
+        <p>section</p>
+    </section>
+    <footer>footer</footer>
+</body>
+</html>
