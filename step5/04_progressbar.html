@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>progressbar</title>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <script>
+        $(document).ready(function(){
+            var scrollprogress = 0;
+            var rotateValue = 0;
+            $(window).scroll(function(){
+                scrollprogress = $(window).scrollTop() / ($(document).height() - $(window).height()); // 0~1까지 수치변환 변수
+                // console.log('window scrolltop' + $(window).scrollTop());
+                // console.log('document height' + $(document).height());
+                // console.log('window height' + $(window).height());
+                // console.log(scrollprogress);
+
+                if($(window).scrollTop() > $('section').offset().top){
+                    $('.upBtn').css('display','block');
+                }else{
+                    $('.upBtn').css('display','none');
+                }
+
+                $('.progressBar span').css('width', scrollprogress * 100 +'%');
+
+                rotateValue = scrollprogress * 720;
+                $('.upBtn .upBG').css('transform', 'translate(-50%,-10%) rotate(' + rotateValue + 'deg)');
+
+            });
+
+            //.progressBar 를 click 하면 일어날 함수
+            $('.progressBar').click(function(e){
+            // 변수 scrollprogress 라는 곳 안에 이벤트가 일어나는 위치 메소드를 넣어 변수 만들어주기
+                scrollprogress = e.clientX / $(this).width() 
+            // window 기준 scrolltop 의 값을 알아내기
+                // $(window).scrollTop();
+                // console.log(scrollprogress)
+            });
+
+            //.upBtn 클릭하면
+            // html scrollTop 값이 0 으로 되게 하여라. 메소드는 animate 사용하기
+            $('.upBtn').click(function(){
+                $('html').animate({scrollTop : 0});
+            });
+        });
+    </script>
+    <style>
+        .material-symbols-outlined {
+          font-variation-settings:
+          'FILL' 0,
+          'wght' 400,
+          'GRAD' 0,
+          'opsz' 48;
+
+          font-size: 50px;
+          color: white;
+        }
+        
+        *{margin: 0;padding: 0;}
+        header,section,footer{
+            height: 100vh;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 130px;
+        }
+
+        header{background-color: blanchedalmond;}
+        footer{background-color: cadetblue;}
+
+        .progressBar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 10px;
+            background-color: #333;
+        }
+
+        .progressBar span{
+            display: block;
+            width: 100%;
+            height: 100%;
+            background-color: skyblue;
+        }
+
+        .upBtn {
+            position: fixed;
+            right: 50px;
+            bottom: 50px;
+            cursor: pointer;
+        }
+
+        .upBtn .upBG {
+            background-color: #333;
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            z-index: -1;
+            border-radius: 15px;
+
+        }
+
+        .upBtn .material-symbols-outlined {
+            z-index: 10;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="progressBar">
+        <span></span>
+    </div>
+    <header>header</header>
+    <section>section</section>
+    <footer>
+        footer
+        <div class="upBtn">
+            <span class="material-symbols-outlined">arrow_upward</span>
+            <span class="upBG"></span>
+        </div>
+    </footer>
+</body>
+</html>

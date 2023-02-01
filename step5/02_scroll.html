@@ -8,7 +8,23 @@
     <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
     <script>
         $(document).ready(function(){
+            $(window).scroll(function(){
+                var 보고있는화면의위치 = $(window).scrollTop(); //300
+                var 보고있는화면의세로크기 = $(window).height();  //977
+                var test = $('h2').offset().top // 1000
 
+                console.log('보고있는 화면의 위치 = ' + 보고있는화면의위치);
+                console.log('보고있는 화면의 세로크기 = ' + 보고있는화면의세로크기);
+                console.log('h2 offset.top = ' + test);
+
+                $('[data-scroll]').each(function(){
+                    if(보고있는화면의위치 > test - 보고있는화면의세로크기){
+                        $(this).addClass('active');
+                    }
+
+                    // if (400 > 23)
+                });
+            });
         });
     </script>
     <style>
@@ -25,6 +41,15 @@
         footer{background-color: cadetblue;}
         section{flex-direction: column;}
         section >* {font-size: 100px;}
+        [data-scroll]{opacity: 0; transition: 1s;}
+        [data-scroll="leftRight"]{transform: translateX(-200px);}
+        [data-scroll="rightLeft"]{transform: translateX(200px);}
+        [data-scroll="bottomTop"]{transform: translateY(200px);}
+        [data-scroll="rotate"]{transform: translateX(-400px) rotate(0);}
+
+        [data-scroll].active{opacity: 1; transform: translate(0,0);}
+        [data-scroll="rotate"].active{transform: translateX(0px) rotate(360deg);}
+
     </style>
 </head>
 <body>
