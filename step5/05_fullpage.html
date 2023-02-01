@@ -46,6 +46,20 @@
                     $('html').stop().animate({scrollTop : $('[data-event="fullpage"]').eq($(this).index()).offset().top},1000);
                 });
             });
+
+            // 스마트폰의 브라우저 : 마우스 이벤트와는 별도로 터치 이벤트를 지원함
+            // touchstart : 터치가 시작될때
+            // touchend : 터치가 끝날때
+            // touchmove : 터치한 상태로 이동할때
+            // touchenter : 터치한 요소의 경계외부에서 내부로 이동할때
+            // touchleave : 터치한 요소의 경계내부에서 외부로 이동할때
+
+            $('[data-event="fullpage"]').on('touchstart', function(){
+                console.log('1');
+            });
+            $('[data-event="fullpage"]').on('touchend', function(){
+                console.log('2');
+            });
         });
     </script>
     <style>
