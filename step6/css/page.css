@@ -1,0 +1,91 @@
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 48
+}
+
+*{
+    margin: 0;padding: 0;
+}
+ul,ol {list-style: none;}
+a {text-decoration: none; color: black;}
+.wrap {max-width: 1200px; margin: 0 auto;}
+
+/* header */
+header {position: fixed; left: 0; top: 0; width: 100%; height: 70px; background-color: white;}
+header .wrap {
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+    align-items: center;
+}
+header .wrap nav ul{display: flex; height: 100%;}
+header .wrap nav ul li {width: 100px; height: 100%; position: relative; cursor: pointer;}
+header .wrap nav ul li a {
+    display: flex; height: 100%; justify-content: center; align-items: center;
+}
+header .wrap nav ul li ul {
+    position: absolute; left: 0; top: 100%; width: 100%; 
+    text-align: center; background-color: white; 
+    border-width: 0 1px 1px; border-style: solid; 
+    border-color: rgba(0,0,0,0.2);}
+header .wrap nav ul li ul li {flex-direction: column; cursor: pointer;}
+header .wrap nav ul li ul li a {display: block; padding: 10px 0;}
+header .wrap nav ul li ul{display: none;}
+
+
+header > .upBtn{
+    position: fixed;
+    bottom: 7%;
+    right: 10%;
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    color: white;
+    background-color: rgb(67, 66, 66);
+    cursor: pointer;
+}
+header > .upBtn span{transform: translate(50%,50%);}
+
+.basic{background-color: rgb(7, 30, 54); padding-top: 170px;}
+.basic .wrap h2{color: white; margin-bottom: 30px;}
+.basic .wrap a {display: inline-block; color: #333; background-color: #ffd400; padding: 10px 40px; border-radius: 10px; margin-bottom: 30px;}
+.basic .wrap a:hover {color: rgba(23, 22, 22, 0.171); background-color: white;}
+.basic .wrap ul{display: flex; background-color: #333; text-align: center; padding: 40px 0; color: white; font-size: 50px;}
+.basic .wrap ul li {flex: 1;}
+.basic .wrap ul li span{display: block;}
+
+
+.tabMenu,.scrollTop,.accordion,footer{padding: 50px 0;}
+.tabMenu .wrap{display: flex; flex-direction: column; justify-content: center;}
+.tabMenu .wrap h2{margin-bottom: 20px;}
+.tabMenu .wrap ul{display: flex; text-align: center; }
+.tabMenu .wrap ul li{flex: 1; cursor: pointer; padding: 30px 30px;}
+.tabMenu .wrap ul li.active{border-bottom: 5px solid rgb(75, 148, 250);}
+.tabMenu .wrap ol {border: 1px solid gainsboro;}
+.tabMenu .wrap ol li {
+    height: 300px; display: none; justify-content: center; 
+    align-items: center; font-size: 30px;
+}
+.tabMenu .wrap ol li.active{display: flex;}
+
+.scrollTop {background-color: rgb(75, 148, 250); overflow: hidden; text-align: center;}
+.scrollTop .wrap h2 {color: white;}
+.scrollTop .wrap h2, .accordion .wrap h2{  font-size: 25px; line-height: 50px;}
+.scrollTop .wrap ul li p {color: white;}
+.scrollTop .wrap ul li p b{font-weight: 300;}
+.scrollTop .wrap h2 b, .accordion .wrap h2 b, .scrollTop .wrap ul li p b
+{display: block; font-size: 16px;}
+.scrollTop .wrap ul{display: flex; justify-content: space-between;}
+.scrollTop .wrap ul li{transform: translateY(200px); opacity: 0; transition: 1s;}
+.scrollTop .wrap ul li.active{transform: translateY(0); opacity: 1;}
+.scrollTop .wrap ul li img{border-radius: 15px; margin-bottom: 20px;}
+
+.accordion .wrap h2{text-align: center; margin-bottom: 20px;}
+.accordion .wrap ul li span{display: block; padding: 15px 0; border-bottom: 1px solid rgba(151,151,151,0.582);}
+.accordion .wrap ul li p {padding: 15px; display: none;}
+
+footer {border-top: 2px solid #333;}
+footer .wrap{display: flex; justify-content: space-between;}
