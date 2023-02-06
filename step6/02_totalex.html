@@ -10,6 +10,10 @@
     <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
     <script>
         $(document).ready(function(){
+            $('header > .wrap nav > ul > li').hover(function(){
+                $(this).find('ul').stop().slideToggle(500);
+            });
+
             // tab 구현
             $('.tabMenu .wrap ul li').click(function(){
                 $('.tabMenu .wrap ul li').removeClass('active');
@@ -18,20 +22,45 @@
                 $('.tabMenu .wrap ol li').eq($(this).index()).addClass('active');
             });
 
+            $('.accordion .wrap ul li span').click(function(){
+                $(this).next().slideToggle();
+                // siblings('p')
+            });
 
+            var exVlaue = false;
             $(window).scroll(function(){
                 var scrolltop = $(window).scrollTop();
-            
+                var basicOffset = $('.basic ul').offset().top - 100
                 // console.log($('.scrollTop .wrap ul li').offset().top); //1297
-                // console.log(scrolltop);
+                console.log('scrollTop = ' + scrolltop);
+                console.log('basicoffsetTop = ' + basicOffset);
                 $('.scrollTop .wrap ul li').each(function(){
-                if(scrolltop > $(this).offset().top - 600){
-                    $(this).addClass('active');
-                }else{
-                    $(this).removeClass('active');
+                    if(scrolltop > $(this).offset().top - 600){
+                        $(this).addClass('active');
+                    }else{
+                        $(this).removeClass('active');
+                    }
+                });
+
+                
+
+                if(!exVlaue){
+                    if(scrolltop >= basicOffset){
+                        var progress = $('.basic ul li span').attr('data-rotate');
+                        // $('select').animate({속성이름 : 속성값}, 시간, 이징, 다른할일)
+                        $({percent : 0}).animate({percent : 70},{
+                            duration:1500,
+                            progress:function(){
+                                var now = this.percent;
+                                $('.animate').text(Math.floor(now));
+                            }
+                        });
+                        exVlaue = true;
+                    }
+                    
                 }
+
             });
-            })
             
         });
     </script>
