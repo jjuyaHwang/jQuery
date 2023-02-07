@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>scroll_menu</title>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function(){
+            var $menu = $('.wrap header nav ul li');
+            var $contents = $('#contents > div');
+
+            $($menu).click(function(){
+                $menu.removeClass('active');
+                $(this).addClass('active').siblings().removeClass('active');
+                var idx = $(this).index();
+                var section = $contents.eq(idx);
+                var sectionDistance = section.offset().top;
+
+                $('html,body').stop().animate({scrollTop : sectionDistance});
+
+            });
+
+            $(window).scroll(function(){
+                $contents.each(function(){
+                    if($(window).scrollTop >= $(this).offset().top){
+                        var idx = $(this).index();
+                        $menu.removeClass('active');
+                        $menu.eq(idx).addClass('active');
+                    }
+                });
+            });
+        });
+    </script>
+    <style>
+        * { margin:0; padding:0; }
+        body { background: #545454; }
+
+        .wrap { width:950px; margin:0 auto; padding-bottom:400px; }
+        .wrap header { position: fixed; width:950px; height:114px; margin:0 auto; text-align:center; top:0px; background: #545454; }
+        .wrap header nav ul {float:right; margin-right:33px;}
+        .wrap header nav ul li { padding:59px 0px 0px 63px; float:left; list-style: none; color: #CCCCCC; }
+        .wrap header nav ul li { color:#fff; text-decoration:none; }
+        .wrap header nav ul li.active { color:#000; font-weight:bold; } 
+        .wrap header h1 {float:left; width:125px; padding-top:40px; color:#FFFFFF;}
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <header>
+            <h1>
+                <a href="#"><img src="img/logoPaper.png" alt="logo"></a>
+            </h1>
+            <nav>
+                <ul>
+                    <li class="active">paper</li>
+                    <li >works</li>
+                    <li >email</li>
+                </ul>
+            </nav>
+        </header>
+        <section id="contents">
+            <div><img src="img/paper.jpg" alt="paper"></div>
+            <div><img src="img/work.jpg" alt="works"></div>
+            <div><img src="img/email.jpg" alt="email"></div>
+        </section>
+    </div>
+</body>
+</html>
